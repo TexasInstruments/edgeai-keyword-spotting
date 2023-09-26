@@ -74,7 +74,7 @@ class AudioInference(object):
         self.word_labels = ["Down", "Go", "Left", "No", "Off", "On", "Right", "Stop", "Up", "Yes", "Silence", "Unknown"]
 
         print('loading KWS model...')
-        self.interpreter = tflite.Interpreter(modelpath, num_threads=4)
+        self.interpreter = tflite.Interpreter(modelpath, num_threads=1)
         self.interpreter.allocate_tensors()
         self.input_details = self.interpreter.get_input_details()
         self.output_details = self.interpreter.get_output_details()
@@ -170,7 +170,7 @@ class AudioInference(object):
         A callback registered to pyaudio for running the main body of this application. Most parameters are unused. It is required to return and audio sample and a 'continuation' flag
         '''
         if self.last_chunk is None:
-            print('Skipping first chunk')
+            print('Skipping first chunk... typically takes a moment for librosa to initialize')
         else:
             t1 = time.time_ns()//1000/1000
             #audio data is collected in 500 ms samples and processed in 1000 ms chunks, i.e. a 50% sliding window
@@ -199,7 +199,7 @@ class AudioInference(object):
 
 def main(modeldir, modelname):
     print('main in audio-inference-tinykws')
-    audio = AudioInference(modeldir=modeldir, modelname=modelname, device_index=14, )
+    audio = AudioInference(modeldir=modeldir, modelname=modelname, device_index=1, )
     audio.setup()
 
     while (audio.input_stream.is_active()): time.sleep(2)

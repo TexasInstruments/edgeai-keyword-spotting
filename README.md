@@ -1,6 +1,6 @@
 # Audio keyword spotting on Sitara MPU
 
-This repository has been validated on Texas Insruments AM62x and AM62Ax microprocessors for the 8.6 and 9.0 SDKs. 
+This repository has been validated on Texas Insruments AM62x and AM62Ax microprocessors for the 8.6 SDK. 
 
 ## What is this repo?
 
@@ -19,9 +19,10 @@ This repo hosts python3 code for audio keyword spotting using two (tinyml-kws an
 ## How to run the demo
 
 1. Setup the SDK on an SD card for the starter kit EVM's selected device/SoC according to the respective device's user guide ([AM62x](https://dev.ti.com/tirex/explore/node?node=A__AdoyIZ2jtLBUfHZNVmgFBQ__am62x-devtools__FUz-xrs__LATEST&search=am62x) and [AM62Ax](https://dev.ti.com/tirex/explore/node?node=A__AQniYj7pI2aoPAFMxWtKDQ__am62ax-devtools__FUz-xrs__LATEST). Follow that guide until a linux terminal session is available through serial/USB or internet/SSH
-2. clone this repository onto the device. This may require setting proxy variables like HTTPS_PROXY if the device is behind a firewall
-3. run the 'install_on_evm.sh' script. This will download and build the portaudio dependency, and then setup a few python libraries for audio processing
-4. Within the two subfolders, run either of the two python scripts starting with 'audio-inference'. Note that you will need to have the USB microphone plugged in and know the device index within linux. This is 1 by default, but the 'detect_microphone.py' script will also help identify them. 
+2. Clone this repository onto the device. This may require setting proxy variables like HTTPS_PROXY if the device is behind a firewall
+3. Run the 'install_on_evm.sh' script. This will download and build the portaudio dependency, and then setup a few python libraries for audio processing
+4. "Source" the 'quick_setup.sh' script to set an environment variable that is needed to load pyaudio in python:    ```source ./quick_setup.sh```
+5. Within the two subfolders, run either of the two python scripts starting with 'audio-inference'. Note that you will need to have the USB microphone plugged in and know the device index within linux. This is 1 by default, but the 'detect_microphone.py' script will also help identify them. 
 
 ### Words recognized
 

@@ -37,7 +37,7 @@ if [[ ! -d ./portaudio ]]; then
     git clone https://github.com/PortAudio/portaudio/
     cd portaudio
     ./configure
-    make
+    make -j
     make install
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
     echo "built and installed portaudio to /usr/local/lib, and exported to library path"    

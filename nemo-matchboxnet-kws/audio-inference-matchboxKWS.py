@@ -127,7 +127,7 @@ class AudioInference(object):
 
     def inference_callback(self, audio_buffer, frame_count, time_info, flag):
         if self.last_chunk is None:
-            print('Skipping first chunk')
+            print('Skipping first chunk... typically takes a moment for librosa to initialize')
         else:
             t1 = time.time_ns()//1000/1000
             audio_data = np.frombuffer(self.last_chunk+audio_buffer, dtype=np.int16)
